@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocHire Malaysia — Home Healthcare Marketplace</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --emerald: #00875A;
+    --emerald-light: #00A36C;
+    --emerald-dark: #005C3E;
+    --cream: #F9F5EF;
+    --warm-white: #FEFCF8;
+    --charcoal: #1A1A2E;
+    --gold: #D4A853;
+    --soft-gray: #6B7280;
+    --light-gray: #F3F4F6;
+    --border: #E5E7EB;
+    --red: #EF4444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(254, 252, 248, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--emerald);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+
+  .logo-text span { color: var(--emerald); }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--soft-gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--emerald); }
+
+  .nav-btns {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .btn-ghost {
+    padding: 8px 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--emerald); color: var(--emerald); }
+
+  .btn-primary {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--emerald);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--emerald-dark); transform: translateY(-1px); }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,135,90,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(212,168,83,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-content {
+    max-width: 600px;
+    animation: fadeUp 0.8s ease forwards;
+    position: relative; z-index: 2;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,135,90,0.1);
+    color: var(--emerald-dark);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(0,135,90,0.2);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--charcoal);
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--emerald);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--soft-gray);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 500px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .btn-lg {
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: none;
+  }
+
+  .btn-lg-primary {
+    background: var(--emerald);
+    color: white;
+    box-shadow: 0 4px 20px rgba(0,135,90,0.3);
+  }
+
+  .btn-lg-primary:hover { background: var(--emerald-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,135,90,0.4); }
+
+  .btn-lg-outline {
+    background: white;
+    color: var(--charcoal);
+    border: 1.5px solid var(--border);
+  }
+
+  .btn-lg-outline:hover { border-color: var(--emerald); color: var(--emerald); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+  }
+
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    display: block;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--soft-gray); }
+
+  .hero-image {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: 420px;
+    z-index: 2;
+    animation: fadeIn 1s ease 0.3s both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-40%) scale(0.97); }
+    to { opacity: 1; transform: translateY(-50%) scale(1); }
+  }
+
+  /* ===== SEARCH BAR ===== */
+  .search-section {
+    padding: 40px 5%;
+    background: white;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .search-bar {
+    display: flex;
+    gap: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--light-gray);
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+
+  .search-bar input, .search-bar select {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    background: white;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    outline: none;
+  }
+
+  .search-bar select { max-width: 180px; color: var(--soft-gray); }
+
+  .search-bar button {
+    padding: 12px 28px;
+    background: var(--emerald);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .search-bar button:hover { background: var(--emerald-dark); }
+
+  /* ===== SECTION COMMON ===== */
+  section { padding: 80px 5%; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+
+  .section-header p {
+    color: var(--soft-gray);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ===== CATEGORIES ===== */
+  .categories { background: white; }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .category-card {
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    color: var(--charcoal);
+  }
+
+  .category-card:hover {
+    border-color: var(--emerald);
+    background: rgba(0,135,90,0.04);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,135,90,0.12);
+  }
+
+  .category-card .icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+  .category-card .name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+  .category-card .count { color: var(--soft-gray); font-size: 0.78rem; }
+
+  /* ===== DOCTOR CARDS ===== */
+  .doctors { background: var(--cream); }
+
+  .doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .doctor-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    cursor: pointer;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .doctor-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  }
+
+  .doctor-card-header {
+    padding: 24px 24px 16px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .doctor-avatar {
+    width: 60px; height: 60px;
+    border-radius: 14px;
+    object-fit: cover;
+    background: var(--emerald);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .doctor-info { flex: 1; }
+  .doctor-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 3px;
+    color: var(--charcoal);
+  }
+  .doctor-specialty {
+    color: var(--emerald);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .doctor-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.84rem;
+    color: var(--soft-gray);
+  }
+
+  .stars { color: var(--gold); font-size: 0.9rem; }
+
+  .badge-verified {
+    background: rgba(0,135,90,0.1);
+    color: var(--emerald-dark);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,135,90,0.2);
+    white-space: nowrap;
+  }
+
+  .doctor-card-body { padding: 0 24px 16px; }
+
+  .doctor-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .tag {
+    background: var(--light-gray);
+    color: var(--soft-gray);
+    font-size: 0.76rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+
+  .doctor-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.84rem;
+    color: var(--soft-gray);
+    margin-bottom: 14px;
+  }
+
+  .doctor-meta span { display: flex; align-items: center; gap: 4px; }
+
+  .doctor-card-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .doctor-price { font-size: 1.1rem; font-weight: 700; color: var(--charcoal); }
+  .doctor-price span { font-size: 0.78rem; font-weight: 400; color: var(--soft-gray); }
+
+  .btn-book {
+    padding: 8px 20px;
+    background: var(--emerald);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-book:hover { background: var(--emerald-dark); }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-it-works { background: white; }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+  }
+
+  .step {
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    position: relative;
+    background: var(--warm-white);
+    transition: all 0.3s;
+  }
+
+  .step:hover {
+    border-color: var(--emerald);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,135,90,0.1);
+  }
+
+  .step-num {
+    width: 50px; height: 50px;
+    background: var(--emerald);
+    color: white;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 auto 18px;
+  }
+
+  .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+  .step p { font-size: 0.88rem; color: var(--soft-gray); line-height: 1.6; }
+
+  /* ===== ESCROW SECTION ===== */
+  .escrow-section {
+    background: var(--charcoal);
+    color: white;
+    border-radius: 30px;
+    margin: 0 5% 80px;
+    padding: 60px 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .escrow-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .escrow-content h2 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .escrow-content p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .escrow-steps { display: flex; flex-direction: column; gap: 16px; }
+
+  .escrow-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .escrow-icon {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .escrow-step-text h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 3px; }
+  .escrow-step-text p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+  .escrow-visual {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .flow-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .flow-item.active { background: rgba(0,135,90,0.25); border-color: rgba(0,135,90,0.4); }
+  .flow-icon { font-size: 1.3rem; }
+  .flow-label { font-size: 0.88rem; font-weight: 500; }
+  .flow-arrow { text-align: center; color: rgba(255,255,255,0.3); font-size: 1.2rem; margin: 4px 0; }
+
+  .amount-display {
+    text-align: center;
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(212,168,83,0.15);
+    border-radius: 12px;
+    border: 1px solid rgba(212,168,83,0.3);
+  }
+
+  .amount-display .label { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+  .amount-display .amount { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold); }
+
+  /* ===== JOIN SECTION ===== */
+  .join-section {
+    background: var(--cream);
+    text-align: center;
+    padding: 80px 5%;
+  }
+
+  .join-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .join-section p { color: var(--soft-gray); margin-bottom: 36px; font-size: 1rem; line-height: 1.6; }
+
+  .join-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .join-card {
+    background: white;
+    border-radius: 20px;
+    padding: 36px 28px;
+    border: 1.5px solid var(--border);
+    text-align: left;
+    transition: all 0.3s;
+  }
+
+  .join-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+  .join-card .j-icon { font-size: 2.5rem; margin-bottom: 18px; display: block; }
+  .join-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+  .join-card p { color: var(--soft-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px; }
+
+  .btn-join {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-join-green { background: var(--emerald); color: white; border: none; }
+  .btn-join-green:hover { background: var(--emerald-dark); }
+  .btn-join-outline { background: transparent; color: var(--charcoal); border: 1.5px solid var(--border); }
+  .btn-join-outline:hover { border-color: var(--emerald); color: var(--emerald); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.7);
+    padding: 50px 5% 30px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand .logo-text { color: white; }
+  .footer-brand p { margin-top: 12px; font-size: 0.88rem; line-height: 1.6; max-width: 260px; }
+
+  .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; }
+  .footer-col a { display: block; color: rgba(255,255,255,0.55); font-size: 0.85rem; text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--emerald-light); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: white;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 440px;
+    overflow: hidden;
+    animation: popIn 0.3s ease;
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-header {
+    padding: 28px 28px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .modal-tabs {
+    display: flex;
+    padding: 20px 28px 0;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--soft-gray);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+  }
+
+  .tab-btn.active { color: var(--emerald); border-bottom-color: var(--emerald); }
+
+  .modal-body { padding: 24px 28px 28px; }
+
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--charcoal); }
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--emerald); }
+
+  .form-submit {
+    width: 100%;
+    padding: 13px;
+    background: var(--emerald);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s;
+  }
+
+  .form-submit:hover { background: var(--emerald-dark); }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 0.82rem;
+    color: var(--soft-gray);
+  }
+
+  .role-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .role-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--soft-gray);
+  }
+
+  .role-btn.active { border-color: var(--emerald); color: var(--emerald); background: rgba(0,135,90,0.05); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero-image { display: none; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .nav-links { display: none; }
+    .escrow-section { grid-template-columns: 1fr; margin: 0 4% 60px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .search-bar { flex-direction: column; }
+    .search-bar select { max-width: 100%; }
+  }
+
+  /* Notification toast */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--charcoal);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s;
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast .t-icon { margin-right: 8px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🏥</div>
+    <span class="logo-text">Doc<span>Hire</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#doctors">Find Doctors</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#payment">Safe Payment</a></li>
+    <li><a href="#join">Join as Pro</a></li>
+  </ul>
+  <div class="nav-btns">
+    <button class="btn-ghost" onclick="openModal('login')">Log In</button>
+    <button class="btn-primary" onclick="openModal('register')">Sign Up Free</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">🇲🇾 Malaysia's Healthcare Marketplace</div>
+    <h1>Hire Trusted <em>Doctors & Nurses</em> For Home Care</h1>
+    <p>Book verified Malaysian healthcare professionals for home visits, elder care, post-surgery recovery, and more. Payment protected with secure escrow.</p>
+    <div class="hero-ctas">
+      <button class="btn-lg btn-lg-primary" onclick="document.getElementById('doctors').scrollIntoView({behavior:'smooth'})">🔍 Find a Doctor</button>
+      <button class="btn-lg btn-lg-outline" onclick="openModal('register')">💼 Join as Professional</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">250+</span>
+        <span class="stat-label">Verified Doctors</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1,200+</span>
+        <span class="stat-label">Happy Families</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Secure Payments</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Doctor Cards (decorative) -->
+  <div class="hero-image">
+    <div class="doctor-card" style="grid-column: span 2; animation-delay: 0.1s;">
+      <div class="doctor-card-header">
+        <div class="doctor-avatar">👩‍⚕️</div>
+        <div class="doctor-info">
+          <div class="doctor-name">Dr. Siti Aminah</div>
+          <div class="doctor-specialty">General Practitioner</div>
+          <div class="doctor-rating"><span class="stars">★★★★★</span> 4.9 (128 reviews)</div>
+        </div>
+        <span class="badge-verified">✓ MMC</span>
+      </div>
+      <div class="doctor-card-footer">
+        <div class="doctor-price">RM 180 <span>/ visit</span></div>
+        <button class="btn-book" onclick="showToast('🔒 Login to book')">Book Now</button>
+      </div>
+    </div>
+    <div style="background: rgba(0,135,90,0.08); border-radius: 16px; padding: 18px; text-align: center; border: 1px solid rgba(0,135,90,0.2);">
+      <div style="font-size:1.8rem; margin-bottom:8px;">🔒</div>
+      <div style="font-size:0.82rem; font-weight:700; color:var(--emerald-dark);">Escrow Payment</div>
+      <div style="font-size:0.75rem; color:var(--soft-gray); margin-top:4px;">Money held safely until job done</div>
+    </div>
+    <div style="background: white; border-radius: 16px; padding: 18px; text-align: center; border: 1px solid var(--border);">
+      <div style="font-size:1.8rem; margin-bottom:8px;">✅</div>
+      <div style="font-size:0.82rem; font-weight:700;">MMC Verified</div>
+      <div style="font-size:0.75rem; color:var(--soft-gray); margin-top:4px;">All doctors are verified</div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-section">
+  <div class="search-bar">
+    <input type="text" placeholder="🔍  Search doctors, nurses, specialists...">
+    <select>
+      <option value="">All Specialties</option>
+      <option>General Practitioner</option>
+      <option>Paediatrician</option>
+      <option>Geriatric Care</option>
+      <option>Post-Surgery Care</option>
+      <option>Home Nurse</option>
+      <option>Physiotherapist</option>
+    </select>
+    <select>
+      <option value="">All States</option>
+      <option>Kuala Lumpur</option>
+      <option>Selangor</option>
+      <option>Johor</option>
+      <option>Penang</option>
+      <option>Perak</option>
+      <option>Sabah</option>
+      <option>Sarawak</option>
+    </select>
+    <button onclick="showToast('🔍 Searching available professionals...')">Search</button>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="section-header">
+    <h2>Browse by Specialty</h2>
+    <p>Find the right healthcare professional for your family's needs</p>
+  </div>
+  <div class="category-grid">
+    <a href="#" class="category-card">
+      <span class="icon">🩺</span>
+      <div class="name">General Doctor</div>
+      <div class="count">85 available</div>
+    </a>
+    <a href="#" class="category-card">
+      <span class="icon">👶</span>
+      <div class="name">Paediatrician</div>
+      <div class="count">34 available</div>
+    </a>
+    <a href="#" class="category-card">
+      <span class="icon">🧓</span>
+      <div class="name">Elder Care</div>
+      <div class="count">61 available</div>
+    </a>
+    <a href="#" class="category-card">
+      <span class="icon">💊</span>
+      <div class="name">Home Nurse</div>
+      <div class="count">118 available</div>
+    </a>
+    <a href="#" class="category-card">
+      <span class="icon">🦴</span>
+      <div class="name">Physiotherapy</div>
+      <div class="count">29 available</div>
+    </a>
+    <a href="#" class="category-card">
+      <span class="icon">🧠</span>
+      <div class="name">Mental Health</div>
+      <div class="count">22 available</div>
+    </a>
+  </div>
+</section>
+
+<!-- DOCTORS LISTING -->
+<section class="doctors" id="doctors">
+  <div class="section-header">
+    <h2>Featured Healthcare Professionals</h2>
+    <p>All professionals are MMC-verified and background checked</p>
+  </div>
+  <div class="doctor-grid" id="doctorGrid"></div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="section-header">
+    <h2>How DocHire Works</h2>
+    <p>Book a healthcare professional in 4 simple steps</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Search & Browse</h3>
+      <p>Find verified doctors and nurses near you. Filter by specialty, location, price, and availability.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Book & Pay Securely</h3>
+      <p>Choose your slot and pay through our secure escrow system. Your money is held safely — not released until the job is done.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Receive Home Care</h3>
+      <p>The professional visits your home at the scheduled time. Track their arrival in real-time.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Confirm & Release Payment</h3>
+      <p>After the visit, confirm the job is done. Payment is then released to the doctor. Leave a review to help others.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ESCROW PAYMENT SECTION -->
+<div class="escrow-section" id="payment">
+  <div class="escrow-content">
+    <h2>Your Money is <em>Always Protected</em></h2>
+    <p>We know payment delays are a real problem in Malaysia. Our escrow system ensures doctors get paid fast — and families are protected if something goes wrong.</p>
+    <div class="escrow-steps">
+      <div class="escrow-step">
+        <div class="escrow-icon">🔒</div>
+        <div class="escrow-step-text">
+          <h4>Payment is Locked</h4>
+          <p>When you book, payment goes into secure escrow — not to the doctor yet</p>
+        </div>
+      </div>
+      <div class="escrow-step">
+        <div class="escrow-icon">🏠</div>
+        <div class="escrow-step-text">
+          <h4>Service is Delivered</h4>
+          <p>Doctor completes the home visit. You rate the experience</p>
+        </div>
+      </div>
+      <div class="escrow-step">
+        <div class="escrow-icon">✅</div>
+        <div class="escrow-step-text">
+          <h4>Payment Released Fast</h4>
+          <p>Once confirmed, money transfers to doctor within 24 hours — no more waiting weeks</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="escrow-visual">
+    <div class="flow-item">
+      <span class="flow-icon">👨‍👩‍👦</span>
+      <span class="flow-label">Family Pays</span>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item active">
+      <span class="flow-icon">🏦</span>
+      <span class="flow-label">DocHire Escrow (Money Held Safely)</span>
+    </div>
+    <div class="flow-arrow">↓ <span style="font-size:0.75rem; color:rgba(255,255,255,0.4)">After job confirmed</span></div>
+    <div class="flow-item">
+      <span class="flow-icon">👩‍⚕️</span>
+      <span class="flow-label">Doctor Receives Payment</span>
+    </div>
+    <div class="amount-display">
+      <div class="label">SAMPLE TRANSACTION</div>
+      <div class="amount">RM 180.00</div>
+      <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:4px;">Protected & Guaranteed</div>
+    </div>
+  </div>
+</div>
+
+<!-- JOIN SECTION -->
+<section class="join-section" id="join">
+  <div class="section-header">
+    <h2>Join DocHire Today</h2>
+    <p>Whether you need care or want to provide it — DocHire connects you</p>
+  </div>
+  <div class="join-cards">
+    <div class="join-card">
+      <span class="j-icon">👨‍👩‍👦</span>
+      <h3>I Need Healthcare</h3>
+      <p>Find verified doctors and nurses for your family. Book home visits, elder care, post-surgery recovery, and more. Payment always protected.</p>
+      <button class="btn-join btn-join-green" onclick="openModal('register')">Sign Up as Patient</button>
+    </div>
+    <div class="join-card">
+      <span class="j-icon">👩‍⚕️</span>
+      <h3>I'm a Doctor / Nurse</h3>
+      <p>Expand your patient base. Get paid fast through our escrow system. No more chasing payments. Join hundreds of verified professionals.</p>
+      <button class="btn-join btn-join-outline" onclick="openModal('apply')">Apply as Professional</button>
+    </div>
+    <div class="join-card">
+      <span class="j-icon">🏥</span>
+      <h3>I'm a Clinic / Hospital</h3>
+      <p>Partner with us to place your staff for home visits. Increase revenue and serve more patients without extra overhead.</p>
+      <button class="btn-join btn-join-outline" onclick="showToast('📧 Contact us at hello@dochire.my')">Contact Us</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-icon">🏥</div>
+        <span class="logo-text">Doc<span>Hire</span></span>
+      </div>
+      <p>Malaysia's trusted healthcare marketplace connecting families with verified doctors and nurses.</p>
+    </div>
+    <div class="footer-col">
+      <h4>For Patients</h4>
+      <a href="#">Find a Doctor</a>
+      <a href="#">Find a Nurse</a>
+      <a href="#">How It Works</a>
+      <a href="#">Safe Payments</a>
+    </div>
+    <div class="footer-col">
+      <h4>For Professionals</h4>
+      <a href="#">Apply to Join</a>
+      <a href="#">How to Get Paid</a>
+      <a href="#">MMC Verification</a>
+      <a href="#">Professional FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About DocHire</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 DocHire Malaysia. All rights reserved.</span>
+    <span>🇲🇾 Made for Malaysia</span>
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Welcome Back</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-tabs" id="modalTabs">
+      <button class="tab-btn active" onclick="switchTab('login')">Log In</button>
+      <button class="tab-btn" onclick="switchTab('register')">Sign Up</button>
+    </div>
+    <div class="modal-body">
+      <!-- Login Form -->
+      <div id="loginForm">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••">
+        </div>
+        <button class="form-submit" onclick="showToast('✅ Login successful! Welcome back.')">Log In</button>
+        <p class="form-footer">Forgot password? <a href="#" style="color:var(--emerald)">Reset it here</a></p>
+      </div>
+
+      <!-- Register Form -->
+      <div id="registerForm" style="display:none">
+        <div class="role-toggle">
+          <button class="role-btn active" onclick="setRole(this, 'patient')">👨‍👩‍👦 Patient / Family</button>
+          <button class="role-btn" onclick="setRole(this, 'professional')">👩‍⚕️ Professional</button>
+        </div>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Muhammad / Siti ...">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+60 12 345 6789">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Min 8 characters">
+        </div>
+        <button class="form-submit" onclick="showToast('🎉 Account created! Welcome to DocHire.')">Create Account</button>
+        <p class="form-footer">By signing up, you agree to our <a href="#" style="color:var(--emerald)">Terms of Service</a></p>
+      </div>
+
+      <!-- Apply Form -->
+      <div id="applyForm" style="display:none">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Dr. / Nurse ...">
+        </div>
+        <div class="form-group">
+          <label>Profession</label>
+          <select>
+            <option>Medical Doctor (MBBS)</option>
+            <option>Registered Nurse</option>
+            <option>Physiotherapist</option>
+            <option>Specialist Doctor</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>MMC / Nursing Board Registration No.</label>
+          <input type="text" placeholder="e.g. MMC 12345">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+60 12 345 6789">
+        </div>
+        <button class="form-submit" onclick="showToast('📋 Application submitted! We will review within 2 working days.')">Submit Application</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="t-icon"></span><span id="toastMsg"></span></div>
+
+<script>
+// ===== DOCTOR DATA =====
+const doctors = [
+  {
+    name: "Dr. Siti Aminah bt Razak",
+    specialty: "General Practitioner",
+    avatar: "👩‍⚕️",
+    rating: 4.9,
+    reviews: 128,
+    experience: "8 years",
+    location: "Petaling Jaya, Selangor",
+    price: 180,
+    tags: ["Home Visit", "Elder Care", "Paediatric"],
+    verified: true
+  },
+  {
+    name: "Dr. Ahmad Fauzi bin Ismail",
+    specialty: "Geriatric Specialist",
+    avatar: "👨‍⚕️",
+    rating: 4.8,
+    reviews: 95,
+    experience: "12 years",
+    location: "Ampang, KL",
+    price: 250,
+    tags: ["Elder Care", "Dementia", "Post-Surgery"],
+    verified: true
+  },
+  {
+    name: "Nurse Priya Krishnaswamy",
+    specialty: "Registered Nurse",
+    avatar: "👩‍⚕️",
+    rating: 5.0,
+    reviews: 74,
+    experience: "6 years",
+    location: "Subang Jaya, Selangor",
+    price: 120,
+    tags: ["Wound Care", "IV Drip", "Post-natal"],
+    verified: true
+  },
+  {
+    name: "Dr. Tan Wei Ming",
+    specialty: "Paediatrician",
+    avatar: "👨‍⚕️",
+    rating: 4.7,
+    reviews: 156,
+    experience: "10 years",
+    location: "Cheras, KL",
+    price: 220,
+    tags: ["Children", "Newborn", "Vaccination"],
+    verified: true
+  },
+  {
+    name: "Dr. Nurul Huda bt Azman",
+    specialty: "General Practitioner",
+    avatar: "👩‍⚕️",
+    rating: 4.9,
+    reviews: 88,
+    experience: "7 years",
+    location: "Shah Alam, Selangor",
+    price: 160,
+    tags: ["Home Visit", "Chronic Disease", "Diabetic Care"],
+    verified: true
+  },
+  {
+    name: "Mohd Hakim bin Yusof",
+    specialty: "Physiotherapist",
+    avatar: "🧑‍⚕️",
+    rating: 4.8,
+    reviews: 63,
+    experience: "5 years",
+    location: "Damansara, Selangor",
+    price: 140,
+    tags: ["Stroke Rehab", "Sports Injury", "Post-Op"],
+    verified: true
+  }
+];
+
+function renderDoctors() {
+  const grid = document.getElementById('doctorGrid');
+  grid.innerHTML = doctors.map((d, i) => `
+    <div class="doctor-card" style="animation-delay: ${i * 0.1}s">
+      <div class="doctor-card-header">
+        <div class="doctor-avatar">${d.avatar}</div>
+        <div class="doctor-info">
+          <div class="doctor-name">${d.name}</div>
+          <div class="doctor-specialty">${d.specialty}</div>
+          <div class="doctor-rating">
+            <span class="stars">★★★★★</span> ${d.rating} (${d.reviews})
+          </div>
+        </div>
+        ${d.verified ? '<span class="badge-verified">✓ MMC</span>' : ''}
+      </div>
+      <div class="doctor-card-body">
+        <div class="doctor-tags">
+          ${d.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+        <div class="doctor-meta">
+          <span>📍 ${d.location}</span>
+          <span>⏱ ${d.experience} exp</span>
+        </div>
+      </div>
+      <div class="doctor-card-footer">
+        <div class="doctor-price">RM ${d.price} <span>/ visit</span></div>
+        <button class="btn-book" onclick="showToast('🔒 Please login to book ${d.name}')">Book Now</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== MODAL =====
+function openModal(type) {
+  document.getElementById('authModal').classList.add('open');
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('registerForm').style.display = 'none';
+  document.getElementById('applyForm').style.display = 'none';
+
+  if (type === 'login') {
+    document.getElementById('loginForm').style.display = 'block';
+    document.getElementById('modalTitle').textContent = 'Welcome Back';
+    setActiveTab('login');
+  } else if (type === 'register') {
+    document.getElementById('registerForm').style.display = 'block';
+    document.getElementById('modalTitle').textContent = 'Create Account';
+    setActiveTab('register');
+  } else if (type === 'apply') {
+    document.getElementById('applyForm').style.display = 'block';
+    document.getElementById('modalTitle').textContent = 'Apply as Professional';
+    document.getElementById('modalTabs').style.display = 'none';
+  }
+}
+
+function closeModal() {
+  document.getElementById('authModal').classList.remove('open');
+  document.getElementById('modalTabs').style.display = 'flex';
+}
+
+function switchTab(tab) {
+  document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+  document.getElementById('modalTitle').textContent = tab === 'login' ? 'Welcome Back' : 'Create Account';
+  setActiveTab(tab);
+}
+
+function setActiveTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (tab === 'login' && i === 0) || (tab === 'register' && i === 1));
+  });
+}
+
+function setRole(btn, role) {
+  document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+document.getElementById('authModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ===== TOAST =====
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ===== INIT =====
+renderDoctors();
+</script>
+</body>
+</html>
